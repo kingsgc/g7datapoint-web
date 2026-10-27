@@ -1,0 +1,306 @@
+/* ============================================================
+   G7DataPoint — global app restyle (dashboard + all SPA screens)
+   Brand: teal #0bbf9e / lit #18e2a6 / deep #07444f / wash #e2faf3
+   Scoped: runs on every SPA screen; login page keeps its own
+   look from g7-login.css (higher-specificity scoped rules win).
+   Mode: body.g7-light / body.g7-dark are toggled at runtime by
+   g7-rebrand.js based on the app's light/dark palette.
+   ============================================================ */
+
+:root {
+  --g7: #0bbf9e;
+  --g7-lit: #18e2a6;
+  --g7-deep: #07444f;
+  --g7-wash: #e2faf3;
+}
+
+/* ---------- scrollbars ---------- */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--g7), var(--g7-deep));
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--g7-lit); }
+
+/* ---------- content area ---------- */
+body[class*="g7-"] main {
+  background:
+    linear-gradient(180deg, rgba(226, 250, 243, 0.55) 0px, rgba(255, 255, 255, 0) 260px),
+    #f7f9fb;
+  animation: g7-fade-in 0.35s ease-out;
+}
+@keyframes g7-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---------- topbar: glass with brand edge ---------- */
+header.MuiAppBar-root {
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 6px 26px -10px rgba(7, 68, 79, 0.18) !important;
+}
+body.g7-light header.MuiAppBar-root { background: rgba(255, 255, 255, 0.85) !important; }
+body.g7-dark  header.MuiAppBar-root { background: rgba(22, 28, 36, 0.85) !important; }
+header.MuiAppBar-root::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--g7) 0%, var(--g7-lit) 45%, var(--g7-deep) 100%);
+  pointer-events: none;
+}
+
+/* ---------- sidebar ---------- */
+.MuiDrawer-paper {
+  border-right: 1px solid rgba(11, 191, 158, 0.16) !important;
+}
+body.g7-light .MuiDrawer-paper {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fdfb 55%, #effaf6 100%) !important;
+}
+body.g7-dark .MuiDrawer-paper {
+  background: linear-gradient(180deg, #131a20 0%, #121f22 100%) !important;
+}
+/* avatar ring on sidebar/topbar profile */
+.MuiDrawer-paper .MuiAvatar-root {
+  box-shadow: 0 0 0 3px rgba(11, 191, 158, 0.3);
+}
+.MuiListSubheader-root {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  background: transparent !important;
+  color: var(--g7-deep) !important;
+}
+body.g7-dark .MuiListSubheader-root { color: #5eead4 !important; }
+.MuiListItemButton-root {
+  border-radius: 12px !important;
+  margin: 2px 10px !important;
+  width: auto !important;
+  font-weight: 600;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.MuiListItemButton-root:hover {
+  background: rgba(11, 191, 158, 0.12) !important;
+  transform: translateX(3px);
+}
+.MuiListItemButton-root.Mui-selected,
+.MuiListItemButton-root.Mui-selected:hover {
+  background: linear-gradient(135deg, var(--g7) 0%, #07957f 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px -8px rgba(11, 191, 158, 0.55);
+}
+.MuiListItemButton-root.Mui-selected .MuiListItemIcon-root,
+.MuiListItemButton-root.Mui-selected .MuiListItemText-primary { color: #ffffff !important; }
+.MuiListItemButton-root.Mui-selected .MuiListItemText-primary { font-weight: 700 !important; }
+
+/* ---------- cards ---------- */
+main .MuiCard-root,
+main .MuiPaper-root.MuiCard-root {
+  border: 1px solid rgba(7, 68, 79, 0.07) !important;
+  box-shadow: 0 6px 24px -10px rgba(7, 68, 79, 0.14) !important;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+main .MuiCard-root:hover {
+  transform: translateY(-2px);
+  border-color: rgba(11, 191, 158, 0.35) !important;
+  box-shadow: 0 16px 34px -12px rgba(7, 68, 79, 0.22) !important;
+}
+/* greeting card — remap old orange tint to brand mint */
+body .css-1pg, body .css-1pgyamq {
+  background-image: linear-gradient(135deg, rgba(11, 191, 158, 0.10), rgba(24, 226, 166, 0.06)) !important;
+}
+/* hero stat cards — classes marked by g7-rebrand.js from card content */
+.g7-hero {
+  background: linear-gradient(135deg, var(--g7-lit) 0%, #0a9c86 55%, var(--g7-deep) 100%) !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 14px 30px -10px rgba(11, 191, 158, 0.5) !important;
+}
+.g7-hero, .g7-hero * { color: rgba(255, 255, 255, 0.92) !important; }
+.g7-hero-deep {
+  background: linear-gradient(135deg, var(--g7-deep) 0%, #0a5f6b 55%, var(--g7) 100%) !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 14px 30px -10px rgba(7, 68, 79, 0.45) !important;
+}
+.g7-hero-deep, .g7-hero-deep * { color: rgba(255, 255, 255, 0.92) !important; }
+/* exact-hash fallbacks (emotion hashes for the frozen bundle) */
+body .css-uzm8hp {
+  background: linear-gradient(135deg, var(--g7-lit) 0%, #0a9c86 55%, var(--g7-deep) 100%) !important;
+  border: none !important;
+  box-shadow: 0 14px 30px -10px rgba(11, 191, 158, 0.5) !important;
+}
+body .css-1h7, body .css-1h7o19h {
+  background: linear-gradient(135deg, var(--g7-deep) 0%, #0a5f6b 55%, var(--g7) 100%) !important;
+  border: none !important;
+  box-shadow: 0 14px 30px -10px rgba(7, 68, 79, 0.45) !important;
+}
+body .css-uzm8hp *, body .css-1h7o19h * { color: rgba(255, 255, 255, 0.92) !important; }
+
+/* ---------- buttons ---------- */
+.MuiButton-containedPrimary {
+  background: linear-gradient(135deg, var(--g7-lit) 0%, #0aa189 100%) !important;
+  box-shadow: 0 8px 20px -6px rgba(11, 191, 158, 0.5) !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.MuiButton-containedPrimary:hover {
+  background: linear-gradient(135deg, #0bc7a9 0%, #078f7a 100%) !important;
+  box-shadow: 0 12px 26px -6px rgba(11, 191, 158, 0.6) !important;
+  transform: translateY(-1px);
+}
+.MuiButton-outlinedPrimary {
+  border-color: var(--g7) !important;
+  color: var(--g7-deep) !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+}
+body.g7-dark .MuiButton-outlinedPrimary { color: #5eead4 !important; }
+.MuiButton-outlinedPrimary:hover { background: rgba(11, 191, 158, 0.1) !important; }
+
+/* ---------- chips / badges ---------- */
+.MuiChip-root { border-radius: 10px !important; font-weight: 700; letter-spacing: 0.01em; }
+.MuiChip-colorPrimary {
+  background: linear-gradient(135deg, var(--g7-lit), #0a9c86) !important;
+  box-shadow: 0 4px 12px -4px rgba(11, 191, 158, 0.5);
+}
+
+/* ---------- inputs ---------- */
+.MuiOutlinedInput-root { border-radius: 12px !important; }
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(11, 191, 158, 0.6) !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--g7) !important;
+  box-shadow: 0 0 0 4px rgba(11, 191, 158, 0.15);
+}
+.MuiInputLabel-root.Mui-focused { color: var(--g7) !important; }
+.MuiFormLabel-root.Mui-focused { color: var(--g7) !important; }
+
+/* ---------- tables (transactions, history, pricing…) ---------- */
+.MuiTableCell-head {
+  background: rgba(11, 191, 158, 0.1) !important;
+  color: var(--g7-deep) !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(11, 191, 158, 0.35) !important;
+}
+body.g7-dark .MuiTableCell-head { color: #5eead4 !important; }
+.MuiTableBody-root .MuiTableRow-root:hover {
+  background: rgba(11, 191, 158, 0.06) !important;
+}
+.MuiTableCell-root { border-color: rgba(7, 68, 79, 0.08) !important; }
+body.g7-dark .MuiTableCell-root { border-color: rgba(255, 255, 255, 0.08) !important; }
+
+/* ---------- typography polish ---------- */
+main .MuiTypography-h4 { font-weight: 800 !important; letter-spacing: -0.02em; }
+main .MuiTypography-h5 { font-weight: 800 !important; letter-spacing: -0.01em; }
+main .MuiTypography-h6 { font-weight: 700 !important; }
+
+/* ---------- pagination / switches ---------- */
+.MuiPaginationItem-root.Mui-selected {
+  background: linear-gradient(135deg, var(--g7-lit), #0a9c86) !important;
+  color: #fff !important;
+}
+.MuiSwitch-switchBase.Mui-checked { color: var(--g7) !important; }
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track { background-color: rgba(11, 191, 158, 0.6) !important; }
+
+/* ---------- alerts / snackbar accents ---------- */
+.MuiAlert-filledSuccess { background: linear-gradient(135deg, var(--g7), #0a9c86) !important; }
+
+/* ---------- welcome modal: swap legacy Lottie logo for the G7 logo ---------- */
+.css-1hrxen5 svg, .g7-oldlogo {
+  background: url("/brand/g7-logo-horizontal.png") center / contain no-repeat !important;
+  border-radius: 16px;
+}
+.css-1hrxen5 svg *, .g7-oldlogo * { visibility: hidden !important; }
+.MuiDialog-paper { box-shadow: 0 30px 60px -20px rgba(7, 68, 79, 0.45) !important; }
+.MuiDialog-paper .MuiTypography-h6 strong { color: var(--g7-deep); }
+body.g7-dark .MuiDialog-paper .MuiTypography-h6 strong { color: #5eead4; }
+
+/* ---------- register + other auth pages (chunk 89) ---------- */
+.logo-container {
+  background: linear-gradient(135deg, var(--g7-wash), #ffffff) !important;
+  border: 1px solid rgba(11, 191, 158, 0.25);
+  border-radius: 18px !important;
+  box-shadow: 0 10px 26px -12px rgba(11, 191, 158, 0.45);
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 900px) {
+  main .MuiCard-root:hover { transform: none; }
+  .MuiListItemButton-root:hover { transform: none; }
+}
+
+/* ================================================================
+   G7 brand mark — register / auth pages, drawer, loading splash
+   Uses the real G7DataPoint monogram from /brand/.
+   ================================================================ */
+
+/* ---------- register + auth pages (chunk 89) ---------- */
+.logo-container a > div,
+.logo-container > div {
+  background-image: url("/brand/g7-icon-256.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+.logo-container svg,
+.logo-container img { display: none !important; }
+
+/* ---------- drawer / sidebar header mark ---------- */
+.MuiDrawer-paper .g7-drawer-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 20px 14px;
+}
+.MuiDrawer-paper .g7-drawer-mark img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.MuiDrawer-paper .g7-drawer-mark span {
+  font-family: var(--font-display, "Outfit", "Segoe UI", Arial, sans-serif);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--g7-deep);
+}
+body.g7-dark .MuiDrawer-paper .g7-drawer-mark span { color: #5eead4; }
+
+/* Hide the legacy inline SVG logo that sits at the top of the drawer,
+   so the real G7 mark above reads as the single brand anchor. */
+.MuiDrawer-paper > div:first-child > a > svg,
+.MuiDrawer-paper > div:first-child > div > svg {
+  display: none !important;
+}
+
+/* ---------- legacy brand art beside the brand name ----------
+   g7-rebrand.js tags any <svg> that sits in the same row as the
+   "G7DataPoint" text node and inserts the real mark before it. */
+svg[data-g7-hidden] {
+  display: none !important;
+}
+.g7-brand-swap {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.g7-brand-swap img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+/* the navbar/topbar variant is a touch smaller */
+.MuiToolbar-root .g7-brand-swap img { width: 34px; height: 34px; }

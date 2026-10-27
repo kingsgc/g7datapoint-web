@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <defs>
+    <linearGradient id="g7bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18e2a6"/>
+      <stop offset="0.55" stop-color="#0bbf9e"/>
+      <stop offset="1" stop-color="#077a8c"/>
+    </linearGradient>
+    <linearGradient id="g7shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g7ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eafff7"/>
+      <stop offset="1" stop-color="#9ff5da"/>
+    </linearGradient>
+  </defs>
+
+  <!-- squircle app-icon background -->
+  <rect x="16" y="16" width="608" height="608" rx="140" fill="url(#g7bg)"/>
+  <rect x="16" y="16" width="608" height="608" rx="140" fill="url(#g7shine)"/>
+
+  <!-- orbit ring (data/signal feel) -->
+  <circle cx="320" cy="320" r="238" fill="none" stroke="url(#g7ring)" stroke-width="22"
+          stroke-linecap="round" stroke-dasharray="1190 310" transform="rotate(-45 320 320)" opacity="0.9"/>
+  <circle cx="320" cy="82" r="26" fill="#ffffff"/>
+
+  <!-- bold G7 monogram -->
+  <text x="320" y="410" text-anchor="middle"
+        font-family="Outfit, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="260"
+        fill="#ffffff" letter-spacing="-8">G7</text>
+
+  <!-- datapoint node: dot with pulse -->
+  <circle cx="320" cy="486" r="17" fill="#ffffff"/>
+  <circle cx="320" cy="486" r="17" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="10"
+          stroke-linecap="round" stroke-dasharray="30 30"/>
+</svg>

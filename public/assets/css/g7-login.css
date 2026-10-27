@@ -1,0 +1,212 @@
+/* ==========================================================================
+   G7DataPoint — Login page restyle (scoped to body.g7-login-page)
+   Uses only existing platform images: /slideshow, /networks, /brand.
+   Safe for the React SPA: layout/images applied via CSS only (pseudo-elements
+   and backgrounds on existing MUI emotion classes from main.*.chunk.js).
+   Palette: primary #0bbf9e · secondary #07444f
+   ========================================================================== */
+
+/* ---------- Left art panel: photo hero + deep teal overlay ---------- */
+body.g7-login-page .css-3tm6k1 {
+  background: linear-gradient(160deg, #062a30 0%, #07444f 46%, #055a58 100%) !important;
+}
+body.g7-login-page .css-3tm6k1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/slideshow/slideshow1.jpeg") center / cover no-repeat;
+  opacity: 0.38;
+  filter: saturate(1.08);
+  pointer-events: none;
+}
+body.g7-login-page .css-3tm6k1::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 46% at 78% 8%, rgba(24, 226, 166, 0.20) 0%, rgba(24, 226, 166, 0) 70%),
+    linear-gradient(180deg, rgba(6, 42, 48, 0.10) 0%, rgba(5, 32, 37, 0.55) 62%, rgba(4, 24, 28, 0.82) 100%);
+}
+/* keep the floating bubbles but soften them */
+body.g7-login-page .css-3tm6k1 .floating-shape {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Headline & stats on the art panel ---------- */
+body.g7-login-page .css-1xowaj5 {
+  font-size: clamp(2.1rem, 3vw, 2.9rem) !important;
+  letter-spacing: -0.6px;
+  line-height: 1.15 !important;
+  text-shadow: 0 2px 24px rgba(4, 24, 28, 0.35);
+}
+body.g7-login-page .css-5qslqi {
+  color: rgba(255, 255, 255, 0.86) !important;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.g7-login-page .css-e0joer {
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 18px rgba(4, 24, 28, 0.4);
+}
+
+/* ---------- Network pill (repurposed pattern layer) ----------
+   The empty .css-1oguep0 box is rebuilt into a glass pill showing the
+   platform's real network logos: /networks/mtn|airtel|glo|9mobile.png   */
+body.g7-login-page .css-1oguep0 {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  bottom: calc(10% + 56px);
+  transform: translateX(-50%);
+  width: 360px;
+  height: 68px;
+  z-index: 10;
+  border-radius: 999px;
+  background:
+    /* logos (top layers) */
+    url("/networks/mtn.png")     no-repeat left 27px  center / 30px 30px,
+    url("/networks/airtel.png")  no-repeat left 119px center / 30px 30px,
+    url("/networks/glo.png")     no-repeat left 211px center / 30px 30px,
+    url("/networks/9mobile.png") no-repeat left 303px center / 30px 30px,
+    /* white circular chips behind each logo */
+    radial-gradient(circle at 50% 50%, #ffffff 0 21px, rgba(255, 255, 255, 0) 22px) no-repeat left 20px  center / 44px 44px,
+    radial-gradient(circle at 50% 50%, #ffffff 0 21px, rgba(255, 255, 255, 0) 22px) no-repeat left 112px center / 44px 44px,
+    radial-gradient(circle at 50% 50%, #ffffff 0 21px, rgba(255, 255, 255, 0) 22px) no-repeat left 204px center / 44px 44px,
+    radial-gradient(circle at 50% 50%, #ffffff 0 21px, rgba(255, 255, 255, 0) 22px) no-repeat left 296px center / 44px 44px,
+    rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 14px 34px rgba(4, 24, 28, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: slideUpG7 1s ease-out 0.9s both;
+}
+body.g7-login-page .css-1oguep0 .pattern-element { display: none; }
+
+/* ---------- Caption line under the pill (repurposed badge grid) ---------- */
+body.g7-login-page .css-9dzk0x {
+  display: block;
+  grid-template-columns: none;
+  bottom: calc(10% + 10px);
+  max-width: none;
+}
+body.g7-login-page .css-9dzk0x > div { display: none; }
+body.g7-login-page .css-9dzk0x::after {
+  content: "Data · Airtime · Cable TV · Exam Pins — all in one wallet";
+  display: block;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 12px rgba(4, 24, 28, 0.45);
+}
+
+/* ---------- Footer chip on the art panel: rebrand text ---------- */
+body.g7-login-page .css-1ub0cqu {
+  display: flex;
+  align-items: center;
+}
+body.g7-login-page .css-1ub0cqu > span { font-size: 0; }
+body.g7-login-page .css-1ub0cqu::after {
+  content: "© 2026 G7DataPoint · All rights reserved";
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* ---------- Right panel: soft brand wash ---------- */
+body.g7-login-page .css-17khk2j {
+  background:
+    radial-gradient(56% 44% at 88% -6%, rgba(11, 191, 158, 0.10) 0%, rgba(11, 191, 158, 0) 100%),
+    radial-gradient(48% 40% at -8% 108%, rgba(7, 68, 79, 0.08) 0%, rgba(7, 68, 79, 0) 100%),
+    linear-gradient(180deg, #fbfefd 0%, #f3faf7 100%) !important;
+}
+
+/* ---------- Card ---------- */
+body.g7-login-page .css-1xab9nx {
+  border-radius: 26px !important;
+  border: 1px solid rgba(11, 191, 158, 0.16) !important;
+  box-shadow: 0 26px 60px -14px rgba(7, 68, 79, 0.20), 0 8px 20px -8px rgba(7, 68, 79, 0.10) !important;
+  padding-bottom: 64px !important;
+}
+/* G7 logo badge: swap the inline legacy SVG for the G7DataPoint icon */
+body.g7-login-page .logo-container {
+  box-shadow: 0 12px 28px rgba(11, 191, 158, 0.34), 0 4px 14px rgba(7, 68, 79, 0.14) !important;
+  border-radius: 22px !important;
+}
+body.g7-login-page .logo-container a > div,
+body.g7-login-page .logo-container > div {
+  background-image: url("/brand/g7-icon-512.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+body.g7-login-page .logo-container svg,
+body.g7-login-page .logo-container img { display: none !important; }
+
+/* ---------- Form polish ---------- */
+body.g7-login-page .css-1xab9nx .MuiOutlinedInput-root {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+}
+body.g7-login-page .css-1xab9nx .MuiOutlinedInput-root fieldset {
+  border-color: rgba(10, 11, 30, 0.10) !important;
+}
+body.g7-login-page .css-1xab9nx .MuiOutlinedInput-root:hover fieldset {
+  border-color: rgba(11, 191, 158, 0.55) !important;
+}
+body.g7-login-page .css-1xab9nx .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 0 0 4px rgba(11, 191, 158, 0.13);
+}
+body.g7-login-page .css-1xab9nx .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #0bbf9e !important;
+  border-width: 1.5px !important;
+}
+body.g7-login-page .css-1xab9nx .MuiButton-root {
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px;
+  box-shadow: 0 12px 26px -8px rgba(11, 191, 158, 0.55) !important;
+}
+body.g7-login-page .css-1xab9nx .MuiButton-root:hover {
+  box-shadow: 0 16px 32px -8px rgba(11, 191, 158, 0.65) !important;
+}
+body.g7-login-page .css-wrs4w5 { letter-spacing: -0.3px; }
+
+/* ---------- Security caption under the sign-up row ---------- */
+body.g7-login-page .css-pyletn { position: relative; }
+body.g7-login-page .css-pyletn::after {
+  content: "Secured with bank-grade encryption · G7DataPoint";
+  position: absolute;
+  bottom: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: rgba(10, 11, 30, 0.42);
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes slideUpG7 {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(30px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ---------- Mobile / small screens ---------- */
+@media (max-width: 899.95px) {
+  body.g7-login-page .css-1oguep0,
+  body.g7-login-page .css-9dzk0x,
+  body.g7-login-page .css-1ub0cqu { display: none; }
+  body.g7-login-page .css-3tm6k1::before { opacity: 0.5; }
+}
+@media (max-width: 599.95px) {
+  body.g7-login-page .css-pyletn::after { white-space: normal; width: 100%; text-align: center; }
+}
+@media (max-height: 719.95px) and (min-width: 900px) {
+  body.g7-login-page .css-1oguep0 { bottom: calc(10% + 48px); height: 60px; }
+}
